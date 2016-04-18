@@ -1,3 +1,6 @@
 artist_data/
-edison/edision
-edison/*.jpg
+edison/edison
+*jpg
+*ppm
+*pgm
+*ed
