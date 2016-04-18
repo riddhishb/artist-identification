@@ -10,6 +10,10 @@ working_patch = input_img(100:200,100:200,:);
 edge_patch = edge(rgb2gray(working_patch),'canny');
 imshowpair(working_patch,edge_patch,'montage')
 
+% eroding the structure
+se = strel('square',2);
+edge_patch = imdilate(edge_patch,se);
+
 % Finding the connected componenets
 cc_image = bwconncomp(edge_patch);
 
@@ -17,9 +21,6 @@ modify_img = zeros(size(edge_patch));
 for i = 1:cc_image.NumObjects
     modify_img(cc_image.PixelIdxList{i}) = 1;
 end
-% eroding the structure
-se = offsetstrel('ball',3,3);
-modify_img = imerode(modify_img,se);
 figure;
 imshowpair(edge_patch,modify_img,'montage');
 
