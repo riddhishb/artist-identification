@@ -23,6 +23,25 @@ for i = 1:length(edgelist)
 end
 figure ;
 imshowpair(edges, modify_img,'montage','scaling','none');
-figure ;
-imshow(abs(edges - modify_img));
+
+
+%% Finding the Connected Components
+cc_image = bwconncomp(modify_img);
+majorlen = regionprops(cc_image,'MajorAxisLength');
+minorlen = regionprops(cc_image,'MinorAxisLength');
+area     = regionprops(cc_image,'Area');
+majorlen = cat(1,majorlen.MajorAxisLength);
+minorlen = cat(1,minorlen.MinorAxisLength);
+area     = cat(1,area.Area);
+
+props_conn_comps = zeros(cc_image.NumObjects,6);
+
+props_conn_comps(:,1) = majorlen;
+props_conn_comps(:,2) = minorlen;
+props_conn_comps(:,3) = area;
+props_conn_comps(:,4) = minorlen./majorlen;
+props_conn_comps(:,5) = area./(2.*majorlen.*minorlen);
+props_conn_comps(:,6) = transpose(linspace(1,cc_image.NumObjects,cc_image.NumObjects));
+
+%% Classifying the components into brushstrokes
 toc;
