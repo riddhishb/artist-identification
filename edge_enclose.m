@@ -28,7 +28,11 @@ function [ newedgelist, newlabeledgeim , newmodify_img ] = edge_enclose( edgelis
             for y=ymin:ymax
                 if labeledgeim(x,y)~=0 && labeledgeim(x,y)~=i
                     if ~(edgelist{labeledgeim(x,y)}==0)
-                        matchedges = [matchedges labeledgeim(x,y)];
+                        edge=edgelist{labeledgeim(x,y)};
+                        pt = [x y];
+                        if isequal(pt,edge(end,:)) || isequal(pt,edge(1,:))
+                            matchedges = [matchedges labeledgeim(x,y)];
+                        end
                     end
                 end
             end
