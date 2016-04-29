@@ -9,8 +9,8 @@ tic;
 %% detecting edges using EDISON edge detect
 edges = detect_edges('artist_data/A16983.ppm');
 % imshow(edges);
-edges = im2double(edges);
-% edges = im2double(edges(1:50,1:50));
+% edges = im2double(edges);
+edges = im2double(edges(1:50,1:50));
 
 %% Edge Refinement
 % 1. Edge Linking 
@@ -61,4 +61,38 @@ for i = 1:cc_image.NumObjects
 end
 figure;
 imshowpair(modify_img,modify_img1,'montage');
+
+%% Generating the feature vector per component
+
+feature_vec = zeros(cc_image.NumObjects,11);
+
+% Features
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Orientation
+% 2. Elongatedness
+% 3. Length
+% 4. Broadness
+% 5. Size
+% 6. Average curvature
+% 7. Number of brushstrokes in ngbd
+% 8. std devation of ngbd orientations
+% 9. Broadness Homogenity
+% 10. Geometric straightness
+% 11. number of brushtrokes with similar orientations.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% for length, broadness, size and orientation and eccentricity(elongatedness)
+orientation = regionprops(cc_image,'Orientation');
+feature_vec(:,1) = cat(1,orientation.Orientation);
+elong = regionprops(cc_image,'Eccentricity');
+feature_vec(:,2) = cat(1,elong.Eccentricity);
+feature_vec(:,3) = majorlen;
+feature_vec(:,4) = minorlen;
+feature_vec(:,5) = area;
+
+for i = 1:cc_image.NumObjects
+    
+    % 6. Average curvature
+    
+end    
 toc;
