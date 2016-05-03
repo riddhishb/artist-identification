@@ -95,4 +95,46 @@ for i = 1:cc_image.NumObjects
     % 6. Average curvature
     
 end    
+
+% 7 .Number of brush strokes in neighbourhood
+% 11. number of brushtrokes with similar orientations
+% 8. Stnadard deviation of neighbourhood orientation
+centroids =  regionprops(cc_image,'centroid');
+centroids = cat(1,centroids.Centroid);
+
+neighbourThreshold = 200;
+nbrOrientationThreshold = 0.35;
+
+for i=1:size(centroids,1)
+   numNbr = 0;
+   
+   %neigbour orientations for node i
+   nbrOrientation = [];
+   
+   for j=1:size(centroids,1)
+       if i==j
+           continue
+       end
+       
+       if abs(centroids(i,1)-centroids(j,1)) <  neighbourThreshold && abs(centroids(i,2)-centroids(j,2)) < neighbourThreshold
+           numNbr = numNbr + 1;          
+           %11. 
+           if abs(feature_vec(i,1) -feature_vec(j,1)) < nbrOrientationThreshold
+               feature_vec(i,11) = feature_vec(i,11) + 1;
+           end
+           
+           nbrOrientation = [nbrOrientation feature_vec(i,1)];
+       end
+   end
+   %7
+   feature_vec(i,7) = numNbr;
+   %8
+   feature_vec(i,8) = std(nbrOrientation);
+end
+
+
+%9. Broadness homoginity
+for i = 1:cc_image.NumObjects
+  pixels = cc_image.PixelIdxList{i};
+end
 toc;
