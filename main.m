@@ -9,14 +9,14 @@ addpath('classification');
 
 tic;
 
-im_orig = 'artist_data/original_up.ppm';
-im_forge = 'artist_data/forged_up.ppm';
+im_orig = 'artist_data/original.ppm';
+im_forge = 'artist_data/forged.ppm';
 
 classifier = train_classifier(im_orig, im_forge);
 
-probe_im = 'artist_data/original_down.ppm';
+test_feature_vectors = [];
 
-test_classes = test_classifier(classifier, probe_im);
+test_classes = test_classifier(classifier, test_feature_vectors);
 [num_classes, ~] = size(test_classes);
 orig_classes = ones(num_classes, 1);
 

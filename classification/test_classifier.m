@@ -1,9 +1,9 @@
-function [ classes ] = test_classifier( classifier, in_im )
+function [ classes ] = test_classifier( classifier, feature_vectors )
 % Tests a given classifier
 
 display('Extracting features and getting classes');
 
-feature_vectors = extract_feature(in_im);
+% feature_vectors = extract_feature(in_im);
 
 [num_fv, num_points] = size(feature_vectors);
 
