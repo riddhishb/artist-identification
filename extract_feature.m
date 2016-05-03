@@ -1,16 +1,16 @@
 function [ feature_vec ] = extract_feature( input_file )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+    %UNTITLED2 Summary of this function goes here
+    %   Detailed explanation goes here
 
     %% detecting edges using EDISON edge detect
     edges = detect_edges(input_file);
     % imshow(edges);
-    % edges = im2double(edges);
-    edges = im2double(edges(1:50,1:50));
+    edges = im2double(edges);
+    %edges = im2double(edges(1:50,1:50));
 
     %% Edge Refinement
     % 1. Edge Linking 
-    [edgelist, labelededgeim] = edgelink(edges, 10);
+    [edgelist, ~] = edgelink(edges, 10);
     modify_img = zeros(size(edges));
     for i = 1:length(edgelist)
         for j = 1:size(edgelist{i},1)
