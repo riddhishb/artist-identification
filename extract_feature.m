@@ -18,7 +18,7 @@ function [ feature_vec ] = extract_feature( input_file )
         end    
     end
     %figure ;
-    %imshowpair(edges, modify_img,'montage','scaling','none');
+    imshowpair(edges, modify_img,'montage','scaling','none');
 
 
     %% Finding the Connected Components
