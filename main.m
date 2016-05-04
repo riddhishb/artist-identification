@@ -6,6 +6,7 @@ addpath('artist_data');
 addpath('edge_maps');
 addpath('edge_link');
 addpath('classification');
+addpath('cache');
 
 tic;
 
