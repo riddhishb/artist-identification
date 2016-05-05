@@ -1,6 +1,6 @@
 function [ ] = authenticate( im_orig, im_forge, im_test )
-%AUTHENTICATE Summary of this function goes here
-%   Detailed explanation goes here
+%Authenticates an image
+%   Given an original and a forged image it extracts feature vectors out of these and trains an SVM. Then it extracts feature vectors out of the test image and calculates a score - percentage of correct labels
 
 display('Extracting Features');
 

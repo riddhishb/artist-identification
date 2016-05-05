@@ -1,6 +1,6 @@
 function [ feature_vec ] = extract_feature( input_file )
-    %UNTITLED2 Summary of this function goes here
-    %   Detailed explanation goes here
+    %Given an input image file, this gives out a matrix of feature vectors
+    %   Of the 11 features we have implemented 8, others being 0.
 
     %% detecting edges using EDISON edge detect
     edges = detect_edges(input_file);

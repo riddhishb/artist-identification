@@ -1,6 +1,6 @@
 function [ output_image ] = detect_edges( input_image_path )
-%Detects Edges
-%   Uses EDISON
+%Detects Edges and Outputs an Image with those edges
+%   Uses EDISON edge detection, an executable available online. The EDISON script is generated using Python
     gen_command = ['python edison/genEdisonScript.py ' input_image_path];
     [~, gen_cmdout] = system(gen_command);
     mv_command = 'mv script_edison.ed edison/';

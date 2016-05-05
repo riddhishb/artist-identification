@@ -1,6 +1,6 @@
 function [ score ] = get_score( orig, test )
-%GET_SCORE Summary of this function goes here
-%   Detailed explanation goes here
+%Calculates a likeliness score
+%   Percentage of correctly matched labels
 
 [num_elements, ~] = size(orig);
 

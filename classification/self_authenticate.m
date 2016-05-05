@@ -1,6 +1,6 @@
 function [ ] = self_authenticate( im_orig, im_forge )
-%AUTHENTICATE Summary of this function goes here
-%   Detailed explanation goes here
+%A test for the algorithm
+%   Takes 50% of the feature vectors randomly and trains an SVM. Then takes the other 50% and calculates the score.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 display('Extracting positive features');

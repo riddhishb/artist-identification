@@ -1,5 +1,6 @@
 function [ classes ] = test_classifier( classifier, feature_vectors )
 % Tests a given classifier
+%	Predicts the classes for a matrix of feature vectors
 
 display('Getting classes');
 
